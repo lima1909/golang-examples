@@ -38,7 +38,7 @@ func GetJSONBytes(id string) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// fmt.Println("-- User: ", string(jsonBytes))
+
 	return jsonBytes
 }
 
