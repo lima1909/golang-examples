@@ -7,31 +7,25 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/lima1909/golang-examples/base"
 )
 
-// User is the result structur
-type User struct {
-	UserID   int    `json:"id"`
-	Name     string `json:"name"`
-	UserName string
-	EMail    string
-}
-
-var users = make([]User, 3)
+var users = make([]base.User, 3)
 
 func init() {
-	users[0] = User{UserID: 0, Name: "Mario", EMail: "LiMa@foo.org"}
-	users[1] = User{UserID: 1, Name: "Jasmin", EMail: "JaRo@foo.org"}
-	users[2] = User{UserID: 2, Name: "Linus", EMail: "Linux@foo.org"}
+	users[0] = base.User{UserID: 0, Name: "Mario", EMail: "LiMa@foo.org"}
+	users[1] = base.User{UserID: 1, Name: "Jasmin", EMail: "JaRo@foo.org"}
+	users[2] = base.User{UserID: 2, Name: "Linus", EMail: "Linux@foo.org"}
 }
 
-func getUserByID(id int) User {
+func getUserByID(id int) base.User {
 	for _, u := range users {
 		if id == u.UserID {
 			return u
 		}
 	}
-	return User{UserID: id, Name: "USER NOT FOUND"}
+	return base.User{UserID: id, Name: "USER NOT FOUND"}
 }
 
 // userHandler create a User struc

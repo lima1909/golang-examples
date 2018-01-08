@@ -3,26 +3,12 @@ package main
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/lima1909/golang-examples/base"
 )
-
-// User is the result structur
-type User struct {
-	UserID   int    `json:"id"`
-	Name     string `json:"name"`
-	UserName string
-	EMail    string
-}
-
-func (user User) String() string {
-	return fmt.Sprintf("User [%s%d%s%s%s%s]",
-		"ID: ", user.UserID,
-		", Name: ", user.Name,
-		", EMail: ", user.EMail)
-}
 
 // URL for test
 const url = "https://jsonplaceholder.typicode.com/users/2"
@@ -51,8 +37,8 @@ func GetJSONBytes(id string) ([]byte, error) {
 }
 
 // GetUserByJSONBytes get the User structur by the JSON bytes
-func GetUserByJSONBytes(jsonBytes []byte) User {
-	var user User
+func GetUserByJSONBytes(jsonBytes []byte) base.User {
+	var user base.User
 	json.Unmarshal(jsonBytes, &user)
 	return user
 }
@@ -64,5 +50,5 @@ func main() {
 	}
 	user := GetUserByJSONBytes(jsonBytes)
 
-	fmt.Println(user.String())
+	log.Println(user.String())
 }
