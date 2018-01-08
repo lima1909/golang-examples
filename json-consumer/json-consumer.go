@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -24,11 +25,18 @@ func (user User) String() string {
 }
 
 // URL for test
-const URL = "https://jsonplaceholder.typicode.com/users/"
+const url = "https://jsonplaceholder.typicode.com/users/"
+
+func getURL() string {
+	var urlFlag string
+	flag.StringVar(&urlFlag, "url", url, "the URL for remote call to get the User")
+	flag.Parse()
+	return urlFlag
+}
 
 // GetJSONBytes get the Json by a User ID
 func GetJSONBytes(id string) ([]byte, error) {
-	response, err := http.Get(URL + id)
+	response, err := http.Get(getURL() + id)
 	if err != nil {
 		return nil, err
 	}
