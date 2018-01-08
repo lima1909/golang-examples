@@ -21,7 +21,7 @@ func getURL() string {
 }
 
 // GetJSONBytes get the Json by a User ID
-func GetJSONBytes(id string) ([]byte, error) {
+func GetJSONBytes() ([]byte, error) {
 	response, err := http.Get(getURL())
 	if err != nil {
 		return nil, err
@@ -44,7 +44,7 @@ func GetUserByJSONBytes(jsonBytes []byte) base.User {
 }
 
 func main() {
-	jsonBytes, err := GetJSONBytes("2")
+	jsonBytes, err := GetJSONBytes()
 	if err != nil {
 		log.Fatal(err)
 	}
