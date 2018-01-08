@@ -25,7 +25,7 @@ func (user User) String() string {
 }
 
 // URL for test
-const url = "https://jsonplaceholder.typicode.com/users/"
+const url = "https://jsonplaceholder.typicode.com/users/2"
 
 func getURL() string {
 	var urlFlag string
@@ -36,7 +36,7 @@ func getURL() string {
 
 // GetJSONBytes get the Json by a User ID
 func GetJSONBytes(id string) ([]byte, error) {
-	response, err := http.Get(getURL() + id)
+	response, err := http.Get(getURL())
 	if err != nil {
 		return nil, err
 	}
