@@ -27,19 +27,19 @@ func (user User) String() string {
 const URL = "https://jsonplaceholder.typicode.com/users/"
 
 // GetJSONBytes get the Json by a User ID
-func GetJSONBytes(id string) []byte {
+func GetJSONBytes(id string) ([]byte, error) {
 	response, err := http.Get(URL + id)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	defer response.Body.Close()
 
 	jsonBytes, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
-	return jsonBytes
+	return jsonBytes, nil
 }
 
 // GetUserByJSONBytes get the User structur by the JSON bytes
@@ -50,7 +50,10 @@ func GetUserByJSONBytes(jsonBytes []byte) User {
 }
 
 func main() {
-	jsonBytes := GetJSONBytes("2")
+	jsonBytes, err := GetJSONBytes("2")
+	if err != nil {
+		log.Fatal(err)
+	}
 	user := GetUserByJSONBytes(jsonBytes)
 
 	fmt.Println(user.String())
