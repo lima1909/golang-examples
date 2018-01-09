@@ -11,14 +11,20 @@ import (
 	"github.com/lima1909/golang-examples/base"
 )
 
-var users = make([]base.User, 3)
-
-func init() {
-	users[0] = base.User{UserID: 0, Name: "Mario", EMail: "LiMa@foo.org"}
-	users[1] = base.User{UserID: 1, Name: "Jasmin", EMail: "JaRo@foo.org"}
-	users[2] = base.User{UserID: 2, Name: "Linus", EMail: "Linux@foo.org"}
+// two kind of init a struct-slice
+var users = []base.User{
+	{UserID: 0, Name: "Mario", EMail: "LiMa@foo.org"},
+	{UserID: 1, Name: "Jasmin", EMail: "JaRö@foo.org"},
 }
 
+// second part of init the struct-slice
+func init() {
+	users = append(users, base.User{UserID: 2, Name: "Golang", EMail: "Go@foo.org"})
+	users = append(users, base.User{UserID: 3, Name: "Docker", EMail: "Docker@foo.org"})
+	users = append(users, base.User{UserID: 4, Name: "Linus", EMail: "Linux@foo.org"})
+}
+
+// find the User by the arg id from th slice-struct users
 func getUserByID(id int) base.User {
 	for _, u := range users {
 		if id == u.UserID {
@@ -50,5 +56,5 @@ func userHandler(w http.ResponseWriter, req *http.Request) {
 func main() {
 	log.Println("Starting Http-Server ...")
 	http.HandleFunc("/user/", userHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8082", nil)
 }
