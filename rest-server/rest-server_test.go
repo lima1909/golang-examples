@@ -44,7 +44,6 @@ func TestGetUserByID_InvalidID(t *testing.T) {
 }
 
 func TestUserHandler(t *testing.T) {
-	// var mockRequest = MockRequest{URL: MockURL{Path: "http://localhost:8082/user/2"}}
 	var mockRequest = http.Request{Method: http.MethodGet, URL: &url.URL{Path: "/user/2"}}
 	var mockWriter = MockWriter{}
 	userHandler(mockWriter, &mockRequest)
