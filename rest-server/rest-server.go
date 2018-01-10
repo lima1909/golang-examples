@@ -14,7 +14,7 @@ import (
 // two kind of init a struct-slice
 var users = []base.User{
 	{UserID: 0, Name: "Mario", EMail: "LiMa@foo.org"},
-	{UserID: 1, Name: "Jasmin", EMail: "JaRö@foo.org"},
+	{UserID: 1, Name: "Jasmin", EMail: "JaRo@foo.org"},
 }
 
 // second part of init the struct-slice
