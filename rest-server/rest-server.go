@@ -1,5 +1,8 @@
 package main
 
+// a very good video: https://www.youtube.com/watch?v=YF1qSfkDGAQ
+// the sources to the video: https://github.com/ian-kent/production-ready-go
+
 import (
 	"encoding/json"
 	"fmt"
