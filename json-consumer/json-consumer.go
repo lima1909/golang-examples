@@ -6,12 +6,18 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/lima1909/golang-examples/base"
 )
 
 // URL for test
 const url = "https://jsonplaceholder.typicode.com/users/2"
+
+// create a client (not use http.Get direct), so I can config my calls
+var client = &http.Client{
+	Timeout: time.Second * 10,
+}
 
 func getURL() string {
 	var urlFlag string
@@ -22,7 +28,7 @@ func getURL() string {
 
 // GetJSONBytes get the Json by a User ID
 func GetJSONBytes() ([]byte, error) {
-	response, err := http.Get(getURL())
+	response, err := client.Get(getURL())
 	if err != nil {
 		return nil, err
 	}

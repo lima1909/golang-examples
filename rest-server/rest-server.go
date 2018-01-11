@@ -7,9 +7,19 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/lima1909/golang-examples/base"
 )
+
+// create a server (not use http.ListenAndServe direct)
+// so I can config my server (timeout for example)
+var server = http.Server{
+	Addr:         ":8082",
+	ReadTimeout:  time.Second,
+	WriteTimeout: time.Second,
+	IdleTimeout:  time.Second,
+}
 
 // two kind of init a struct-slice
 var users = []base.User{
@@ -53,8 +63,15 @@ func userHandler(w http.ResponseWriter, req *http.Request) {
 
 }
 
+// userHandler create a User struc
+// func slowWorkHandler(w http.ResponseWriter, req *http.Request) {
+// 	w.WriteHeader(200)
+// 	log.Println("slowWorkHandler call")
+// }
+
 func main() {
-	log.Println("Starting Http-Server ...")
+	log.Println("Starting Http-Server on Addr: ", server.Addr)
 	http.HandleFunc("/user/", userHandler)
-	http.ListenAndServe(":8082", nil)
+	// http.Handle("/wait", http.TimeoutHandler(http.HandlerFunc(slowWorkHandler), time.Second, "cancle ..."))
+	server.ListenAndServe()
 }
