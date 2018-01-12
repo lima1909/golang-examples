@@ -1,10 +1,7 @@
 package cmd
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
-
+	"github.com/lima1909/golang-examples/cli/list"
 	"github.com/spf13/cobra"
 )
 
@@ -21,16 +18,7 @@ var listCmd = &cobra.Command{
 	},
 
 	Run: func(cmd *cobra.Command, args []string) {
-		// log.Printf("-- list with args: %d --", flagMaxFiles)
-		files, err := ioutil.ReadDir("./")
-		if err != nil {
-			log.Fatal("Error by list files ", err)
-		}
-		for i, f := range files {
-			if i < flagMaxFiles {
-				fmt.Println(f.Name(), f.IsDir(), f.Size())
-			}
-		}
+		list.ListCurrentDir(flagMaxFiles)
 	},
 
 	PostRun: func(cmd *cobra.Command, args []string) {
