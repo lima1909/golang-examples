@@ -1,0 +1,1 @@
+Example for a Command Line Interface (CLI) with [Cobra](https://github.com/spf13/cobra)
