@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/lima1909/golang-examples/cli/list"
 	"github.com/spf13/cobra"
 )
@@ -18,7 +20,7 @@ var listCmd = &cobra.Command{
 	},
 
 	Run: func(cmd *cobra.Command, args []string) {
-		list.ListCurrentDir(flagMaxFiles)
+		list.Dir(getStartDirectoryFromArgs(args), flagMaxFiles)
 	},
 
 	PostRun: func(cmd *cobra.Command, args []string) {
@@ -35,4 +37,13 @@ func init() {
 	// and all subcommands, e.g.:
 	// helloCmd.PersistentFlags().String("foo", "", "A help for foo")
 
+}
+
+// from wich directory show the file/directory-list
+func getStartDirectoryFromArgs(args []string) string {
+	fmt.Println("ARGS: ", args)
+	if args != nil && len(args) > 0 {
+		return args[0]
+	}
+	return "./"
 }

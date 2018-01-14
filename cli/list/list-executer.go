@@ -6,9 +6,15 @@ import (
 	"log"
 )
 
-// ListCurrentDir List of the current directory
-func ListCurrentDir(maxFiles int) {
-	files, err := ioutil.ReadDir("./")
+// example for an Enum
+const (
+	file int = iota + 1
+	directory
+)
+
+// Dir List of all files and directories from a start directory
+func Dir(startDirectory string, maxFiles int) {
+	files, err := ioutil.ReadDir(startDirectory)
 	if err != nil {
 		log.Fatal("Error by list files ", err)
 	}
