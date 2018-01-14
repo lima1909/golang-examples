@@ -11,7 +11,7 @@ import (
 var flagMaxFiles int
 
 var listCmd = &cobra.Command{
-	Use:   "list",
+	Use:   "list [directory]",
 	Short: "command to list files or directories",
 	Long:  "you can get an overview from files or directories ...",
 
