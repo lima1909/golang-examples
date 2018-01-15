@@ -16,3 +16,6 @@ Example for a Command Line Interface (CLI) with [Cobra](https://github.com/spf13
 
     # generate a bash completion file: my-bash-completion.sh
     $ cli bash-completion my-bash-completion.sh
+
+    # OR with a alias (short cut)
+    $ cli bc my-bash-completion.sh
