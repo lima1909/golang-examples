@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sync"
 	"time"
 )
 
@@ -60,7 +61,30 @@ func main() {
 	run()
 }
 
+// Example with WaitGroup and Buffer Channel
+func exampleWithBufferChannelAndWaitGroup() {
+	// Buffer = 2 (without Buffer, the channel blocked)
+	sem := make(chan int, 2)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	sem <- 1
+	go func() {
+		defer wg.Done()
+		fmt.Println("Ja")
+		<-sem
+	}()
+
+	wg.Wait()
+
+	// wait until press Enter
+	// var in byte = '\n'
+	// reader := bufio.NewReader(os.Stdin)
+	// reader.ReadString(in)
+
+}
+
 // To Examples to illustrate the Problem vom blocking Channel:
+// ------------------------------------------------------------
 
 // first: start go-function (in background) with receive value from channel
 // secend: send value to channel
