@@ -6,12 +6,6 @@ import (
 	"log"
 )
 
-// example for an Enum
-const (
-	file int = iota + 1
-	directory
-)
-
 // Dir List of all files and directories from a start directory
 func Dir(startDirectory string, maxFiles int) {
 	files, err := ioutil.ReadDir(startDirectory)
