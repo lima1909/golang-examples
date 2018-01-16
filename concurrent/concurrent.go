@@ -74,6 +74,7 @@ func exampleWithBufferChannelAndWaitGroup() {
 		<-sem
 	}()
 
+	close(sem)
 	wg.Wait()
 
 	// wait until press Enter
