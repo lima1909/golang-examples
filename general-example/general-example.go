@@ -46,6 +46,12 @@ func byteArray2string(b []byte) string {
 	return string(b)
 }
 
+func printManyParams(s ...string) {
+	for i, v := range s {
+		fmt.Printf("%d - %v, ", i, v)
+	}
+}
+
 func main() {
 	err := doSomethingWithError(true)
 	if err != nil {
@@ -56,4 +62,6 @@ func main() {
 	typeSwitch(Monday)
 
 	fmt.Println("byteArray2string and back: ", byteArray2string(string2byteArray("I'm a string")))
+
+	printManyParams("a", "b", "c")
 }
