@@ -6,6 +6,7 @@ Examples for GoLang exrcises
 * [rest-server (can use from json-consumer, with -url command line parameter)](./rest-server)
 * [command line interface (cli) with cobra](./cli)
 * [ping-pong to illustrate concurrent acces (with channel)](./concurrent)
+* [templates](./template)
 
 ## How can I test it?
 
