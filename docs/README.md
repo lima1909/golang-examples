@@ -12,3 +12,7 @@ My example: I do a tag v0.1 and you can import my golang-examples with
     $ go get gopkg.in/lima1909/golang-examples.v0
 
 Try this (https://gopkg.in/lima1909/golang-examples.v0)
+
+## coole links:
+* [golangbootcamp](http://www.golangbootcamp.com/book/collection_types)
+* [Effektiv Go programmieren (german)](http://www.bitloeffel.de/DOC/golang/effective_go_de.html)
