@@ -2,18 +2,23 @@ package list
 
 import (
 	"testing"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
-func TestGetFilePrefix(t *testing.T) {
+func TestGetFilePrefix_Dir(t *testing.T) {
 	dirPrefix := getFilePrefix(true)
 	t.Logf("FirPrefix: %s", dirPrefix)
-	if dirPrefix != "d " {
-		t.Error("Expected \"d \", but was ", dirPrefix)
-	}
 
+	Convey(`Compare dirPrefix with "d "`, t, func() {
+		So(dirPrefix, ShouldEqual, "d ")
+	})
+}
+
+func TestGetFilePrefix_File(t *testing.T) {
 	filePrefix := getFilePrefix(false)
 	t.Logf("FilePrefix: %s", filePrefix)
-	if filePrefix != "- " {
-		t.Error("Expected \"- \", but was ", filePrefix)
-	}
+	Convey(`Compare filePrefix with "- "`, t, func() {
+		So(filePrefix, ShouldEqual, "- ")
+	})
 }
