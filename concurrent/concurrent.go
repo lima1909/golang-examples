@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+// a good video that describe channels: https://www.youtube.com/watch?v=rDRa23k70CU
+
 // Player ping or pong
 type Player string
 
@@ -21,7 +23,7 @@ func (ball Ball) String() string {
 }
 
 // Dir list file and directories recursive from start diectory
-func play(player Player, ballChan chan *Ball) {
+func play(player Player, ballChan chan Ball) {
 	for {
 		// receive value from chain
 		// other go-routine is blocked and can not receive new data
@@ -42,7 +44,7 @@ func run() {
 		pong Player = "pong"
 	)
 
-	ballChan := make(chan *Ball)
+	ballChan := make(chan Ball)
 
 	// start 2 player and wait to send data on channel
 	go play(ping, ballChan)
@@ -51,10 +53,14 @@ func run() {
 	// init new Ball and send to Channel
 	// !!! block channel !!!
 	// receiver must start first, otherwise nobody can't unlock
-	ballChan <- new(Ball)
+	ballChan <- Ball{hits: 0, currentPlayer: ""}
 	time.Sleep(time.Second * 3)
+
 	// release channel, the main functions is completed
 	<-ballChan
+
+	// only the sender close the channel -> no data can send more!
+	close(ballChan)
 }
 
 func main() {

@@ -13,9 +13,9 @@ func TestPlayer(t *testing.T) {
 		ping Player = "ping"
 	)
 
-	ballChan := make(chan *Ball)
+	ballChan := make(chan Ball)
 	go play(ping, ballChan)
-	ballChan <- new(Ball)
+	ballChan <- Ball{hits: 0, currentPlayer: ""}
 	ball := <-ballChan
 
 	Convey(`Compare Player: "ping" with ball.currentPlayer`, t, func() {
