@@ -14,9 +14,21 @@ type ticketStore struct {
 	store  []string
 }
 
+func newTicketStore(size int) *ticketStore {
+	return &ticketStore{
+		ticket: new(uint64),
+		done:   new(uint64),
+		store:  make([]string, size+1),
+	}
+}
+
 func (ts *ticketStore) book(s string) {
-	t := atomic.AddUint64(ts.ticket, 1) - 1 // draw a ticket (increment ticket, pos in store = ticket - 1)
-	ts.store[t] = s                         // store the data (s)
+	// increment global variable ticket
+	// and substract -1 localy
+	// draw a ticket (increment ticket, pos in store = ticket - 1)
+	t := atomic.AddUint64(ts.ticket, 1) - 1
+	ts.store[t] = s
+	// increment done thread safe
 	for !atomic.CompareAndSwapUint64(ts.done, t, t+1) {
 		runtime.Gosched()
 	}

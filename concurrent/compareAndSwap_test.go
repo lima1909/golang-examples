@@ -7,11 +7,7 @@ import (
 
 func TestCompareAndSwap(t *testing.T) {
 	size := 10
-	ts := ticketStore{
-		ticket: new(uint64),
-		done:   new(uint64),
-		store:  make([]string, size+1),
-	}
+	ts := newTicketStore(size)
 
 	wg := sync.WaitGroup{}
 	wg.Add(size)
