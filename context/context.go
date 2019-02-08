@@ -22,6 +22,7 @@ func sleepAndTalk(ctx context.Context, d time.Duration, msg string) {
 func main() {
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
 
 	// cancel this func AND sleepAndTalk with Enter-Key
 	go func() {
