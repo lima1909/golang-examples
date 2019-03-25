@@ -53,4 +53,8 @@ func main() {
 	v42 := t.createStopTimeFunc(ret42).(func() int)
 	fmt.Printf("Result: %v\n", v42())
 	fmt.Printf("Time: %v\n", t.dur)
+
+	fmt.Println("-------")
+	printPublicValues()
+	printPrivateValues()
 }
