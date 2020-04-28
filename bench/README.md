@@ -22,3 +22,12 @@ or for more details
 `go run --gcflags "-m -m" main.go`
 
 with the comment *escapes to heap* you can see, what is going to the heap
+
+example:
+
+```
+...
+.\main.go:12:11: make([]byte, len(b)) escapes to heap:
+...
+.\main.go:11:13: b does not escape
+```
